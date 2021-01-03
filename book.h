@@ -6,8 +6,11 @@ struct book{
     int availablity;
 };
 
-void Add_book(){
+void Add_book(char* plik){
+    FILE d = open_file(plik);
     
+
+    close_file(d);    
 }
 
 void Edit_book(){
