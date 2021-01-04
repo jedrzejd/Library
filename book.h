@@ -12,12 +12,11 @@ struct book{
 };
 
 void Add_book(struct book it){
-    FILE d = open_file(plik);
-    printf("%d, %s, %s, %d, %s, %d, %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+    FILE d = open_file(plik, "a");
+    printf("%d; %s; %s; %d; %s; %d; %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
 
-    fprintf(&d,"1");
-
-    fprintf(&d, "%d, %s, %s, %d, %s, %d, %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+    // fwrite()
+    fprintf(&d, "%d; %s; %s; %d; %s; %d; %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
 
     close_file(d);    
 }

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-FILE open_file(char* plik) {
-	FILE *f = fopen(plik, "r");
+FILE open_file(char* plik, char* type) {
+	FILE *f = fopen(plik, type);
     
 	if (f == NULL) {
 		perror("File open error");
