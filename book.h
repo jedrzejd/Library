@@ -1,4 +1,5 @@
 #include "data.h"
+#include <string.h>
 
 char plik[] = "books.txt";
 
@@ -12,11 +13,24 @@ struct book{
 };
 
 void Add_book(struct book it){
-    FILE d = open_file(plik, "a");
-    printf("%d; %s; %s; %d; %s; %d; %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+    FILE d = open_file(plik, "ra");
+    struct book temp;
+    int licz = 1;
+    int ch = 0;
+    while(1){
+        fscanf(&d, "%d %d %s %s %d %s %d %d\n", &ch, &temp.dir_num, temp.author, temp.category, &temp.date, temp.publ, &temp.isbn_code, &temp.availablity);
+        // if(ch == -1){
+        //     break;
+        // }
+        // printf("Line = %d\n", licz);
+        // printf("%d %s %s %d %s %d  %d\n", temp.dir_num, temp.author, temp.category, temp.date, temp.publ, temp.isbn_code, temp.availablity);        
+        // licz++;
+        break;
+    }
 
-    // fwrite()
-    fprintf(&d, "%d; %s; %s; %d; %s; %d; %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+    // printf("%d; %s; %s; %d; %s; %d; %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+
+    fprintf(&d, "%d %d %s %s %d %s %d %d\n",licz,  it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
 
     close_file(d);    
 }
