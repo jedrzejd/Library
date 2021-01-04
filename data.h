@@ -8,8 +8,7 @@ FILE open_file(char* plik) {
 		perror("File open error");
 		exit(0);
 	}
-
-	// fclose(f);
+	printf("File open ok\n");
 	return (*f);
 }
 

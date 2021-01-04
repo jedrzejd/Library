@@ -1,14 +1,23 @@
+#include "data.h"
+
+char plik[] = "books.txt";
 
 struct book{
     int dir_num;
-    char *author, *category, *date, *publ;
+    char *author, *category;
+    int date;
+    char *publ;
     int isbn_code;
     int availablity;
 };
 
-void Add_book(char* plik){
+void Add_book(struct book it){
     FILE d = open_file(plik);
-    
+    printf("%d, %s, %s, %d, %s, %d, %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+
+    fprintf(&d,"1");
+
+    fprintf(&d, "%d, %s, %s, %d, %s, %d, %d\n", it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
 
     close_file(d);    
 }
