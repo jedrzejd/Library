@@ -25,7 +25,6 @@ void Add_book(struct book it){
             printf("Koniec pliku!\n");
             break;
         }
-        // printf("%d %d %s %s %d %s %d %d\n", ch, temp[licz].dir_num, temp[licz].author, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);        
         licz++;
     }
     close_file(d);
@@ -33,13 +32,10 @@ void Add_book(struct book it){
     d = open_file(plik, "w");
 
     for(int i=1; i<licz; i++){
-        // printf("%d %d %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].category, temp[i].date, temp[i].publ, temp[i].isbn_code, temp[i].availablity);        
         fprintf(&d,"%d %d %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].category, temp[i].date, temp[i].publ, temp[i].isbn_code, temp[i].availablity);        
     }
-    // printf("%d %d %s %s %d %s %d %d\n",licz,  it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
     fprintf(&d, "%d %d %s %s %d %s %d %d\n",licz,  it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
     
-    // printf("-1 1 - - 1 - 1 1\n");
     fprintf(&d, "-1 1 - - 1 - 1 1\n");
     close_file(d);    
 }
