@@ -120,7 +120,7 @@ void Print_Books(){
 }
 
 void Search_by_author(char *author){
-//    printf("%s\n", author);
+    printf("%s\n", author);
     FILE d = open_file(plik, "r");
     struct book temp[100];
     int ch = 0, licz = 1;
@@ -142,6 +142,7 @@ void Search_by_author(char *author){
 }
 
 void Search_by_title(char *title){
+    printf("%s\n", title);
     FILE d = open_file(plik, "r");
     struct book temp[100];
     int ch = 0, licz = 1;
@@ -157,10 +158,27 @@ void Search_by_title(char *title){
         licz++;
     }
     if(cnt == 1){
-        printf("W bazie nie ma książek autorstwa %s\n",title);
+        printf("W bazie nie ma książek o tytule %s\n",title);
     }
 }
 
-void Search_by_category(){
-
+void Search_by_category(char *category){
+    printf("%s\n", category);
+    FILE d = open_file(plik, "r");
+    struct book temp[100];
+    int ch = 0, licz = 1;
+    int cnt = 1;
+    while(1){
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        if(ch == -1){
+            break;
+        }
+        if(comp_strings(temp[licz].category, category)){
+            printf("%d %d %s %s %s %d %s %d %d\n",cnt++, temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
+        }
+        licz++;
+    }
+    if(cnt == 1){
+        printf("W bazie nie ma książek z kategori %s\n",category);
+    }
 }

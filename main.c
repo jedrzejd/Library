@@ -16,5 +16,6 @@ int main(){
     Print_Books();
     Search_by_author("Wacław_Kubański");
     Search_by_title("Sherlock_Holmes");
+    Search_by_category("murder_mystery");
     return 0;
 }
