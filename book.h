@@ -5,7 +5,7 @@ char plik[40] = "books.txt";
 
 struct book{
     int dir_num;
-    char author[50], category[50];
+    char author[50], title[50], category[50];
     int date;
     char publ[50];
     int isbn_code;
@@ -38,7 +38,7 @@ void Add_book(struct book it){
     struct book temp[100];
     int licz = 1, ch = 0;
     while(1){
-        fscanf(&d, "%d %d %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
             break;
         }
@@ -53,13 +53,13 @@ void Add_book(struct book it){
             ok = 1;
         }
         else {
-            fprintf(&d, "%d %d %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].category, temp[i].date,
+            fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
                     temp[i].publ, temp[i].isbn_code, temp[i].availablity);
         }
     }
-    fprintf(&d, "%d %d %s %s %d %s %d %d\n",licz,  it.dir_num, it.author, it.category, it.date, it.publ, it.isbn_code, it.availablity);
+    fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", licz,  it.dir_num, it.author, it.title, it.category, it.date, it.publ, it.isbn_code, it.availablity);
     
-    fprintf(&d, "-1 1 - - 1 - 1 1\n");
+    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
     if( ok == 0 ){
         printf("Plik dodany prawidłowo\n");
     }
@@ -78,7 +78,7 @@ void Delete_book(struct book it){
     struct book temp[100];
     int licz = 1, ch = 0;
     while(1){
-        fscanf(&d, "%d %d %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
             break;
         }
@@ -91,14 +91,14 @@ void Delete_book(struct book it){
     int cnt = 1;
     for(int i=1; i<licz; i++) {
         if (comp(temp[i], it) == 0) {
-            fprintf(&d, "%d %d %s %s %d %s %d %d\n", cnt++, temp[i].dir_num, temp[i].author, temp[i].category, temp[i].date,
+            fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", cnt++, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
                     temp[i].publ, temp[i].isbn_code, temp[i].availablity);
         }
         else {
             ok = 1;
         }
     }
-    fprintf(&d, "-1 1 - - 1 - 1 1\n");
+    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
     printf("Książka usunięta poprawnie\n");
     close_file(d);    
 }
@@ -108,30 +108,30 @@ void Print_Books(){
     struct book temp[100];
     int licz = 1, ch = 0;
     while(1){
-        fscanf(&d, "%d %d %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
             break;
         }
 
-        printf("%d %d %s %s %d %s %d %d\n", licz, temp[licz].dir_num, temp[licz].author, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);        
+        printf("%d %d %s %s %s %d %s %d %d\n", licz, temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
         licz++;
     }
     close_file(d);
 }
 
 void Search_by_author(char *author){
-    printf("%s\n", author);
+//    printf("%s\n", author);
     FILE d = open_file(plik, "r");
     struct book temp[100];
     int ch = 0, licz = 1;
     int cnt = 1;
     while(1){
-        fscanf(&d, "%d %d %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
             break;
         }
         if(comp_strings(temp[licz].author, author)){
-            printf("%d %d %s %s %d %s %d %d\n",cnt++, temp[licz].dir_num, temp[licz].author, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
+            printf("%d %d %s %s %s %d %s %d %d\n",cnt++, temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
         }
         licz++;
     }
@@ -141,8 +141,24 @@ void Search_by_author(char *author){
     close_file(d);
 }
 
-void Search_by_title(){
-
+void Search_by_title(char *title){
+    FILE d = open_file(plik, "r");
+    struct book temp[100];
+    int ch = 0, licz = 1;
+    int cnt = 1;
+    while(1){
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        if(ch == -1){
+            break;
+        }
+        if(comp_strings(temp[licz].title, title)){
+            printf("%d %d %s %s %s %d %s %d %d\n",cnt++, temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
+        }
+        licz++;
+    }
+    if(cnt == 1){
+        printf("W bazie nie ma książek autorstwa %s\n",title);
+    }
 }
 
 void Search_by_category(){
