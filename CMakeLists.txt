@@ -10,5 +10,5 @@ add_executable(Library
         customer.h
         data.h
         main.c
-        queue.h
+        list.h
         )
