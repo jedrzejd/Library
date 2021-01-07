@@ -1,5 +1,5 @@
 struct custumer{
-    char *name, *second_name, *address;
+    char name[50], second_name[50], address[50];
     int phone_number;
 };
 
