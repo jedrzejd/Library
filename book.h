@@ -33,10 +33,39 @@ int comp_strings(char *a, char *b){
     return 1;
 }
 
-void Add_book(struct book it){
+int compare(const void* a, const void *b){
+    return strcmp(((struct book*) a) -> author, ((struct book *) b) -> author);
+}
+
+void sort_arr(){
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int licz = 1, ch = 0;
+    int licz = 0, ch = 0;
+    while(1){
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        if(ch == -1){
+            break;
+        }
+
+        licz++;
+    }
+    qsort (temp, licz, sizeof(struct book), compare);
+    close_file(d);
+
+    d = open_file(plik, "w");
+    for(int i = 0; i<licz; i++){
+        fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date, temp[i].publ, temp[i].isbn_code, temp[i].availablity);
+    }
+    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
+    close_file(d);
+}
+
+void Add_book(struct book it){
+    sort_arr();
+
+    FILE d = open_file(plik, "r");
+    struct book temp[100];
+    int licz = 0, ch = 0;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
@@ -46,9 +75,11 @@ void Add_book(struct book it){
     }
     close_file(d);
 
+
+
     d = open_file(plik, "w");
     int ok = 0;
-    for(int i=1; i<licz; i++){
+    for(int i=0; i<licz; i++){
         if(comp(temp[i], it)==1){
             ok = 1;
         }
@@ -73,10 +104,12 @@ void Edit_book(){
 
 }
 
+
+
 void Delete_book(struct book it){
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int licz = 1, ch = 0;
+    int licz = 0, ch = 0;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
@@ -89,7 +122,7 @@ void Delete_book(struct book it){
     d = open_file(plik, "w");
     int ok=0;
     int cnt = 1;
-    for(int i=1; i<licz; i++) {
+    for(int i=0; i<licz; i++) {
         if (comp(temp[i], it) == 0) {
             fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", cnt++, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
                     temp[i].publ, temp[i].isbn_code, temp[i].availablity);
@@ -106,7 +139,7 @@ void Delete_book(struct book it){
 void Print_Books(){
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int licz = 1, ch = 0;
+    int licz = 0, ch = 0;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
         if(ch == -1){
@@ -123,7 +156,7 @@ void Search_by_author(char *author){
     printf("%s\n", author);
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int ch = 0, licz = 1;
+    int ch = 0, licz = 0;
     int cnt = 1;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
@@ -145,7 +178,7 @@ void Search_by_title(char *title){
     printf("%s\n", title);
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int ch = 0, licz = 1;
+    int ch = 0, licz = 0;
     int cnt = 1;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
@@ -166,7 +199,7 @@ void Search_by_category(char *category){
     printf("%s\n", category);
     FILE d = open_file(plik, "r");
     struct book temp[100];
-    int ch = 0, licz = 1;
+    int ch = 0, licz = 0;
     int cnt = 1;
     while(1){
         fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
