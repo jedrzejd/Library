@@ -75,8 +75,6 @@ void Add_book(struct book it){
     }
     close_file(d);
 
-
-
     d = open_file(plik, "w");
     int ok = 0;
     for(int i=0; i<licz; i++){
@@ -100,11 +98,38 @@ void Add_book(struct book it){
     close_file(d);    
 }
 
-void Edit_book(){
+void Edit_book(struct book it){
+    FILE d = open_file(plik, "r");
+    struct book temp[100];
+    int licz = 0, ch = 0, ok=0;
+    while(1){
+        fscanf(&d, "%d %d %s %s %s %d %s %d %d", &ch, &temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, &temp[licz].date, temp[licz].publ, &temp[licz].isbn_code, &temp[licz].availablity);
+        if(ch == -1){
+            break;
+        }
+        else if(it.dir_num == temp[licz].dir_num && it.isbn_code == temp[licz].isbn_code){
+            temp[licz]=it;
+            ok=1;
+        }
+        licz++;
+    }
+    d = open_file(plik, "w");
+    for(int i=0; i<licz; i++){
+        fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
+                    temp[i].publ, temp[i].isbn_code, temp[i].availablity);
+    }
 
+    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
+    if( ok == 1 ){
+        printf("Książka zedytowana poprawnie\n");
+    }
+    else{
+        printf("Książka nie istnieje\n");
+    }
+    close_file(d);
+
+    sort_arr();
 }
-
-
 
 void Delete_book(struct book it){
     FILE d = open_file(plik, "r");
@@ -137,6 +162,8 @@ void Delete_book(struct book it){
 }
 
 void Print_Books(){
+    sort_arr();
+
     FILE d = open_file(plik, "r");
     struct book temp[100];
     int licz = 0, ch = 0;
@@ -153,6 +180,8 @@ void Print_Books(){
 }
 
 void Search_by_author(char *author){
+    sort_arr();
+
     printf("%s\n", author);
     FILE d = open_file(plik, "r");
     struct book temp[100];
@@ -175,6 +204,7 @@ void Search_by_author(char *author){
 }
 
 void Search_by_title(char *title){
+    sort_arr();
     printf("%s\n", title);
     FILE d = open_file(plik, "r");
     struct book temp[100];
@@ -196,6 +226,7 @@ void Search_by_title(char *title){
 }
 
 void Search_by_category(char *category){
+    sort_arr();
     printf("%s\n", category);
     FILE d = open_file(plik, "r");
     struct book temp[100];
