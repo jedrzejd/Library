@@ -1,5 +1,1 @@
-0 3 Arthura_Conana_Doyle Dzien_jak_codzień murder_mystery 1888 Ward_Lock_&_Co 1323 1
-1 2 BArthura_Conana_Doyle Sherlock_Holmes_2 murder_mystery 1887 Ward_Lock_&_Co 14123 3
-2 4 DArthura_Conana_Doyle Holmes_na_dzikim_zachodzie murder_mystery 1889 Ward_Lock_&_Co 115523 5
-3 1 Stefan_Batory Sherlock_Holmes murder_mystery 1886 Ward_Lock_&_Co 1123 5
 -1 1 - - - 1 - 1 1

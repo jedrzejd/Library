@@ -61,7 +61,6 @@ void sort_arr(){
 }
 
 void Add_book(struct book it){
-    sort_arr();
 
     FILE d = open_file(plik, "r");
     struct book temp[100];
@@ -81,21 +80,20 @@ void Add_book(struct book it){
         if(comp(temp[i], it)==1){
             ok = 1;
         }
-        else {
-            fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
+        fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", i, temp[i].dir_num, temp[i].author, temp[i].title, temp[i].category, temp[i].date,
                     temp[i].publ, temp[i].isbn_code, temp[i].availablity);
-        }
     }
-    fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", licz,  it.dir_num, it.author, it.title, it.category, it.date, it.publ, it.isbn_code, it.availablity);
-    
-    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
     if( ok == 0 ){
         printf("Plik dodany prawidłowo\n");
+        fprintf(&d, "%d %d %s %s %s %d %s %d %d\n", licz,  it.dir_num, it.author, it.title, it.category, it.date, it.publ, it.isbn_code, it.availablity);
     }
     else{
         printf("Plik już istnieje\n");
     }
-    close_file(d);    
+    fprintf(&d, "-1 1 - - - 1 - 1 1\n");
+    close_file(d);
+
+    sort_arr();
 }
 
 void Edit_book(struct book it){
@@ -173,7 +171,7 @@ void Print_Books(){
             break;
         }
 
-        printf("%d %d %s %s %s %d %s %d %d\n", licz, temp[licz].dir_num, temp[licz].author, temp[licz].title, temp[licz].category, temp[licz].date, temp[licz].publ, temp[licz].isbn_code, temp[licz].availablity);
+        printf("%d %s %s %d\n", licz+1, temp[licz].author, temp[licz].title, temp[licz].availablity);
         licz++;
     }
     close_file(d);
