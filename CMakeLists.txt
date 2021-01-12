@@ -10,5 +10,4 @@ add_executable(Library
         customer.h
         data.h
         main.c
-        list.h
         )
