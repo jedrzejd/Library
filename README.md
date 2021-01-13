@@ -4,11 +4,11 @@
 
 - [Struktura projektu](#Struktura-projektu)
 
-- [Technologie](#Technologies)
+- [Technologia](#Technologies)
 
 ---
 
-## General Info
+## Info
 
 Program umożliwia zarządzanie biblioteką. 
 
@@ -47,6 +47,6 @@ Program umożliwia:
     - baza danych programu
 ---
 
-## Technologies
+## Technologia
 
 - C
