@@ -191,7 +191,7 @@ int main(){
             return 0;
         }
         else{
-            printf("Wprowadz poprawny wybór w zakresie 1-3\n");
+            printf("Wprowadz poprawny wybór w zakresie 1-4\n");
         }
     }
 
