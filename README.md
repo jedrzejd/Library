@@ -34,17 +34,20 @@ Program umożliwia:
     - główny program zawierający interakcje z użytkownikiem i komunikacje z biblotekami
 
 - book.h 
-    - biloteka umożliwia dodawanie, edytowaine, usowanie, wypisywanie, przeszukiwanie książek z pliku teksowego 
+    - biloteka umożliwia dodawanie, edytowanine, usowanie, wypisywanie, przeszukiwanie książek z pliku teksowego 
 
 - customer.h
     - bibloteka umożliwia wypożyczanie i zwracanie książek
-    - bibloteka zawiera implementacje listy na potrzeby programu
+    - bibloteka zawiera implementacje listy na potrzeby projektu
 
 - data.h
     - bibloteka umożliwia interakcje z plikami teksowymi 
 
 - books.txt
-    - baza danych programu
+    - baza danych programu, plik przechowuje dane w następującym schemacie:
+         - dane są odzielone od siebie znakiem końca linii, w jednej linii między informacjami jest spacja
+  
+         - numer w bazie, autor, tytuł, kategoria, data wydania,  wydawnictwo, nr ISBN, dostępność
 ---
 
 ## Technologia
