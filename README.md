@@ -30,18 +30,26 @@ Program umożliwia:
 
 ## Struktura projektu
 
+Po uruchomieniu programu wyswitlane są informacje i instrukcje w jaki sposób korzystać z Bibloteki
+
 - main.c
-    - główny program zawierający interakcje z użytkownikiem i komunikacje z biblotekami
+    - główny moduł zawierający interakcje z użytkownikiem i komunikacje z biblotekami
 
 - book.h 
     - biloteka umożliwia dodawanie, edytowanine, usowanie, wypisywanie, przeszukiwanie książek z pliku teksowego 
-
+    - dodatkową zaimplentowane są komperatory
 - customer.h
-    - bibloteka umożliwia wypożyczanie i zwracanie książek
-    - bibloteka zawiera implementacje listy na potrzeby projektu
+    - bibloteka umożliwia wypożyczanie i zwracanie książek:
+    - bibloteka zawiera implementacje listy na potrzeby projektu z następującymi możliwościami:
+      - Dodanie elementu do listy
+      - Usowanie pierwszego elemntu listy
+      - Usowanie ostatniego elemtu listy
+      - Pobranie wartości ostatniego elemtu listy
+      - Usunieci dowolnego elentu z listy
+    - zawiera funkcje pomocnicze do porównywania elemntów typów danych
 
 - data.h
-    - bibloteka umożliwia interakcje z plikami teksowymi 
+    - bibloteka zawierająca funkcje umożliwiące interakcje z plikami teksowymi 
 
 - books.txt
     - baza danych programu, plik przechowuje dane w następującym schemacie:
